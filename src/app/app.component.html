@@ -1,0 +1,66 @@
+<div class="header">
+    <div class="title">If you wanna Generator</div>
+</div>
+
+<div class="main-pane">
+    <div class="uploaders">
+        <div class="upload-row">
+            <div class="label">Red:</div>
+            <input type="file" (change)="onImageSelect('rgba(255,0,0,0.5)', $event.target.files[0], 'red')" class="image-01" style="display:none">
+            <button class="original-btn" (click)="upload('.image-01')">Select Image</button>
+            <div class="thumbnail" [style.background-image]="'url(' + imageRed + ')'"></div>
+        </div>
+
+        <div class="upload-row">
+            <div class="label">Blue:</div>
+            <input type="file" (change)="onImageSelect('rgba(0,0,255,0.5)', $event.target.files[0], 'blue')" class="image-02" style="display:none">
+            <button class="original-btn" (click)="upload('.image-02')">Select Image</button>
+            <div class="thumbnail" [style.background-image]="'url(' + imageBlue + ')'"></div>
+        </div>
+
+        <div class="upload-row">
+            <div class="label">Green:</div>
+            <input type="file" (change)="onImageSelect('rgba(0,255,0,0.5)', $event.target.files[0], 'green')" class="image-03" style="display:none">
+            <button class="original-btn" (click)="upload('.image-03')">Select Image</button>
+            <div class="thumbnail" [style.background-image]="'url(' + imageGreen + ')'"></div>
+        </div>
+    </div>
+
+    <div class="processor">
+        <div class="mixup-button ph-flex-center" (click)="mixup()">MIX</div>
+        <div class="mixup-button ph-flex-center" (click)="save()">SAVE</div>
+        <div class="message">
+            Created by <a href="https://twitter.com/pittanko_pta" target="_blank">@pittanko_pta</a><br>
+            Safari is not supported. Use Google Chrome.
+        </div>
+    </div>
+
+</div>
+
+<div class="canvas-area">
+    <div class="canvas-wrapper ph-flex-center">
+        <canvas id="main-canvas" class="main-canvas" width="500px" height="500px"></canvas>
+    </div>
+</div>
+
+
+<div class="dialog-container ph-flex-center" *ngIf="showDialog">
+    <div class="editor-dialog">
+        <div class="header">
+            <div class="label">完成した画像がこちら</div>
+        </div>
+        <div class="body ph-flex-center">
+
+            <img class="image" [src]="image" crossOrigin="Anonymous">
+        </div>
+        <div class="button save ph-flex-center" (click)="closeDialog()">とじる</div>
+
+    </div>
+</div>
+
+
+
+
+<canvas class="cooker" width="2000" height="2000"></canvas>
+
+<router-outlet></router-outlet>
